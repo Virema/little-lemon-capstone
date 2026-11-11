@@ -1,0 +1,46 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Little Lemon is a neighborhood Mediterranean restaurant in Chicago.">
+  <title>Little Lemon | Chicago</title>
+  <link rel="stylesheet" href="{% static 'restaurant/site.css' %}">
+</head>
+<body>
+  <header class="masthead">
+    <nav class="wrap nav" aria-label="Main navigation">
+      <a class="brand" href="{% url 'home' %}">Little Lemon</a>
+      <div><a href="#menu">Menu</a><a href="#booking">Bookings</a></div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <p class="location">Chicago, Illinois</p>
+        <h1>Little Lemon</h1>
+        <p>Welcome to our neighborhood Mediterranean restaurant. Join us for seasonal produce, family recipes, and a meal worth sharing.</p>
+        <a class="button" href="#booking">Plan your visit</a>
+      </div>
+    </section>
+    <section class="wrap section" id="menu">
+      <h2>From the kitchen</h2>
+      <div class="menu">
+        <article><h3>Greek salad</h3><p>Crisp cucumber, ripe tomatoes, olives, and feta.</p></article>
+        <article><h3>Grilled bruschetta</h3><p>Toasted bread with tomatoes, basil, and olive oil.</p></article>
+        <article><h3>Lemon dessert</h3><p>A bright citrus finish inspired by our family recipe.</p></article>
+      </div>
+      <a href="{% url 'menu-list' %}">Browse the menu API</a>
+    </section>
+    <section class="booking" id="booking">
+      <div class="wrap section">
+        <h2>Reserve a table</h2>
+        <p>To make a reservation through the booking API, register an account, sign in to get a token, then send your party size and preferred date and time.</p>
+        <a href="{% url 'booking-list' %}">Open the booking API</a>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap section">Little Lemon · Chicago, Illinois</footer>
+</body>
+</html>

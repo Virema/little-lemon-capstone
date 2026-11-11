@@ -1,0 +1,377 @@
+{
+  "info": {
+    "name": "Little Lemon Capstone",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "username",
+      "value": "reviewer"
+    },
+    {
+      "key": "password",
+      "value": ""
+    },
+    {
+      "key": "staff_username",
+      "value": ""
+    },
+    {
+      "key": "staff_password",
+      "value": ""
+    },
+    {
+      "key": "user_token",
+      "value": ""
+    },
+    {
+      "key": "staff_token",
+      "value": ""
+    },
+    {
+      "key": "menu_id",
+      "value": "1"
+    },
+    {
+      "key": "booking_id",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/auth/users/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\",\n  \"email\": \"reviewer@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Log in",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/auth/token/login/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Log in as staff",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/auth/token/login/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"{{staff_username}}\",\n  \"password\": \"{{staff_password}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Current user",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{user_token}}"
+              }
+            ],
+            "url": "{{base_url}}/auth/users/me/"
+          }
+        },
+        {
+          "name": "Log out",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{user_token}}"
+              }
+            ],
+            "url": "{{base_url}}/auth/token/logout/"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Menu",
+      "item": [
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/restaurant/menu/"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{staff_token}}"
+              }
+            ],
+            "url": "{{base_url}}/restaurant/menu/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Greek salad\",\n  \"price\": \"12.50\",\n  \"inventory\": 20\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Retrieve",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/restaurant/menu/{{menu_id}}/"
+          }
+        },
+        {
+          "name": "Replace",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{staff_token}}"
+              }
+            ],
+            "url": "{{base_url}}/restaurant/menu/{{menu_id}}/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Greek salad\",\n  \"price\": \"12.50\",\n  \"inventory\": 20\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{staff_token}}"
+              }
+            ],
+            "url": "{{base_url}}/restaurant/menu/{{menu_id}}/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inventory\": 18\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{staff_token}}"
+              }
+            ],
+            "url": "{{base_url}}/restaurant/menu/{{menu_id}}/"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{user_token}}"
+              }
+            ],
+            "url": "{{base_url}}/restaurant/booking/tables/"
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{user_token}}"
+              }
+            ],
+            "url": "{{base_url}}/restaurant/booking/tables/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Taylor\",\n  \"no_of_guests\": 4,\n  \"booking_date\": \"2027-05-10T18:30:00Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Retrieve",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{user_token}}"
+              }
+            ],
+            "url": "{{base_url}}/restaurant/booking/tables/{{booking_id}}/"
+          }
+        },
+        {
+          "name": "Replace",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{user_token}}"
+              }
+            ],
+            "url": "{{base_url}}/restaurant/booking/tables/{{booking_id}}/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Taylor\",\n  \"no_of_guests\": 4,\n  \"booking_date\": \"2027-05-10T18:30:00Z\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Token {{user_token}}"
+              }
+            ],
+            "url": "{{base_url}}/restaurant/booking/tables/{{booking_id}}/",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"no_of_guests\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Token {{user_token}}"
+              }
+            ],
+            "url": "{{base_url}}/restaurant/booking/tables/{{booking_id}}/"
+          }
+        }
+      ]
+    }
+  ]
+}

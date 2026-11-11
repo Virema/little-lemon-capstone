@@ -1,0 +1,31 @@
+:root {
+  color-scheme: light;
+  --cream: #fffaf0;
+  --green: #254338;
+  --ink: #24372f;
+  --lemon: #f4ce52;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cream); color: var(--ink); font: 1rem/1.6 system-ui, sans-serif; }
+.wrap { width: min(68rem, 100% - 2.5rem); margin-inline: auto; }
+.masthead { background: white; }
+.nav { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-block: 1rem; }
+.nav div { display: flex; gap: 1rem; }
+a { color: inherit; text-underline-offset: .2em; }
+a:focus-visible { outline: .16rem solid currentColor; outline-offset: .25rem; }
+.brand, h1, h2, h3 { font-family: Georgia, serif; line-height: 1.1; }
+.brand { font-size: 1.55rem; font-weight: bold; text-decoration: none; }
+.hero { padding-block: clamp(3rem, 11vw, 8rem); background: var(--green); color: var(--cream); }
+.hero h1 { margin: 0; font-size: clamp(3rem, 10vw, 7rem); }
+.hero p { max-width: 34rem; font-size: 1.18rem; }
+.hero .location { color: var(--lemon); font-size: .9rem; letter-spacing: .12em; text-transform: uppercase; }
+.button { display: inline-block; padding: .65rem 1.2rem; background: var(--lemon); color: #172b22; border-radius: .3rem; font-weight: 700; text-decoration: none; }
+.section { padding-block: 2.4rem; }
+h2 { margin-top: 0; font-size: clamp(2rem, 5vw, 3rem); }
+.menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 1rem; margin-bottom: 1rem; }
+.menu article { padding: 1.25rem; background: white; border-top: .25rem solid var(--lemon); }
+.menu h3, .menu p { margin: 0; }
+.menu h3 { margin-bottom: .5rem; }
+.booking { background: #e5ebdf; }
+.booking p { max-width: 42rem; }
+footer { font-weight: 600; }
